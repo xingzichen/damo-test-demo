@@ -10,6 +10,8 @@ import './app.less';
 
 damo.init({}, {errors: errorReducer});
 
+damo.autoLoadModels(require.context('./models', true, /\.js$/));
+
 damo.route('/', Root);
 
 damo.bootstrap(document.getElementById('container'))

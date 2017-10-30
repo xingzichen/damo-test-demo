@@ -1,6 +1,12 @@
 import React, {Component, PropTypes} from "react";
 import ReactDOM from 'react-dom';
 import  './index.less';
+import {View} from 'damo-core';
+import Selector from './selector';
+
+@View({
+    selector:Selector
+})
 
 export default class Root extends Component{
     
@@ -8,7 +14,7 @@ export default class Root extends Component{
         title: PropTypes.string.isRequired
     }
     static defaultProps = {
-        title: 'App!!'
+        title: 'My new App!!'
     }
 
     render(){
