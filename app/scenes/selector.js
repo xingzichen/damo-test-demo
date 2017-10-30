@@ -1,5 +1,4 @@
 import damo, {BaseSelector, Input} from 'damo-core';
-import User from '../models/user'
 
 export default class Selector extends BaseSelector{
     @Input()
@@ -12,6 +11,6 @@ export default class Selector extends BaseSelector{
     // }
 
     initialize(){
-        this.getModel(User).getUser();
+        this.getModel('user').getUser();
     }
 }
