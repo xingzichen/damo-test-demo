@@ -8,4 +8,5 @@ export default class TestService {
 }
 
 damo.service(TestService);
-//damo.service({testService:TestService})Cnb@12345
+const testService = new TestService();
+//damo.service({testService:TestService})

@@ -4,8 +4,10 @@ import  './index.less';
 import {View} from 'damo-core';
 import Selector from './selector';
 import {Custom} from './custom';
+import {Page1} from './page1/page1'
 import damo from 'damo-core';
 import TestService from '../services/TestService';
+import Page2 from './page2/page2';
 
 @View({
     selector:Selector,
@@ -31,37 +33,10 @@ export default class Root extends Component{
       count: 1,
       color: 'blue'
     };
+    this.callTestService = this.callTestService.bind(this);
+//    this.context.testService.getUser().then(res => console.log(res));
     console.log(context);
   }
-
-  // componentWillUnmount(){
-  //   console.log("componentWillUnmount");
-  // }
-
-  // componentDidUpdate(){
-  //   console.log("componentDidUpdate");
-  // }
-
-  // shouldComponentUpdate(){
-  //   console.log("shouldComponentUpdate");
-  //   return true;
-  // }
-
-  // componentWillUpdate(){
-  //   console.log("componentWillUpdate");
-  // }
-
-  // componentWillReceiveProps(){
-  //   console.log("componentWillReceiveProps");
-  // }
-
-  // componentWillReceiveProps(){
-  //   console.log("componentWillReceiveProps");
-  // }
-
-  // componentWillMount(){
-  //   console.log("componentWillMount");
-  // }
 
   componentDidMount(){
     console.log("componentDidMount");
@@ -75,28 +50,22 @@ export default class Root extends Component{
 
   callTestService(){
     console.log("callTestService");
+    this.context.testService.getUser().then(res => console.log(res));
+    //console.log(this.testService);
   }
 
-    // changeState = function* (){
-    //   this.setState({count:5});
-    //   yield 5;
-    //   this.setState({count:3});
-    //   yield 3;
-    //   this.setState({count:4});
-    //   yield 4;
-    //   this.setState({count:2});
-    //   return yield 2;
-    // };
+  render(){
+      return (<div>
+              <h1 style={{color:this.state.color}}>Welcome to {this.props.title} {this.state.count}</h1>
+              <img src="/brand.png"/>
+              <p><button onClick={this.callTestService}>callTestService</button></p>
+              <Custom onBlabla={(e) => {this.setState({color:e.target.value})}}/>
+              <Page1 />
 
-    render(){
-        return (<div>
-                <h1 style={{color:this.state.color}}>Welcome to {this.props.title} {this.state.count}</h1>
-                <img src="/brand.png"/>
-                <p><button onClick={this.callTestService}>callTestService</button></p>
-                <Custom onBlabla={(e) => {this.setState({color:e.target.value})}}/>
+                {this.props.children}
 
-            </div>)
-    }
+          </div>);
+  }
 }
 
 // const viewComponent = damo.view(Selector, Root, {testService: TestService});

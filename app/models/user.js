@@ -6,6 +6,8 @@ export default class User extends BaseModel {
     //     profile:{}
     // }
 
+    static displayName = 'user';
+
     @dispatch getUser(){
     // getUser(){
         return this.getQuery({
