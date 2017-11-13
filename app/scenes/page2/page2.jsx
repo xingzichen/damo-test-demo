@@ -14,10 +14,17 @@ export default class Page2 extends React.Component {
     this.context.router.push(path)
   }
 
+  handleGoToPage4(event) {
+    // ...
+    let path = '/page4'
+    this.context.router.push(path)
+  }
+
   render(){
     return (<div>
         <p>This is page2.</p>
         <button onClick={this.handleGoToPage3.bind(this)} >Go to Page3</button>
+        <button onClick={this.handleGoToPage4.bind(this)} >Go to Page4</button>
     </div>);
   }
 }
