@@ -21,10 +21,10 @@ export default class User extends BaseModel {
         // })(this.dispatch);
 
       return this.setState({
-        profile: {
+        profile : {
           response: damo.Api.get('http://localhost:8009/app/models/user/user.json'),
           processData: res =>{ res.data.name = 'what\'s wrong in proccessData'; return res;},
-          change:data => data
+          change:data => { console.log(data);return {login:data.data.name}; }
         }
       });
     }
