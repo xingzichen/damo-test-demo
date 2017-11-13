@@ -20,11 +20,10 @@ export default class Root extends Component{
     testService: React.PropTypes.object.isRequired
   }
 
-  static propTypes = {
-      title: PropTypes.string.isRequired
-  }
   static defaultProps = {
-      title: 'My new App!!'
+    profile: {
+      login: 'My First React App!!'
+    }
   }
 
   constructor(props, context){
@@ -38,6 +37,14 @@ export default class Root extends Component{
     console.log(context);
   }
 
+  componentWillMount(){
+    this.props.getUser();
+  }
+
+  componentDidUpdate(){
+//    console.log(this.props);
+  }
+
   componentDidMount(){
     console.log("componentDidMount");
     this.timer = setInterval((() => {
@@ -45,7 +52,12 @@ export default class Root extends Component{
       // this.forceUpdate();
       this.setState({count:(this.state.count+1)%100});
       // console.log("this.state.count = "+this.state.count);
-    }).bind(this), 100);
+    }).bind(this), 1000);
+//    console.log(this.props);
+  }
+
+  componentWillUnmount(){
+    this.timer && clearTimeout(this.timer);
   }
 
   callTestService(){
@@ -56,7 +68,7 @@ export default class Root extends Component{
 
   render(){
       return (<div>
-              <h1 style={{color:this.state.color}}>Welcome to {this.props.title} {this.state.count}</h1>
+              <h1 style={{color:this.state.color}}>Welcome to {this.props.profile.login} {this.state.count}</h1>
               <img src="/brand.png"/>
               <p><button onClick={this.callTestService}>callTestService</button></p>
               <Custom onBlabla={(e) => {this.setState({color:e.target.value})}}/>
